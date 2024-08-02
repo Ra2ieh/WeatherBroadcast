@@ -1,5 +1,4 @@
-﻿using WeatherBroadcast.Domain.Entities;
-using WeatherBroadcast.Domain.Repositories;
+﻿
 
 namespace WeatherBroadcast.Infrastructure.Repositories;
 

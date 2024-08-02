@@ -13,14 +13,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ApiHelper\ApiHelper.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="EntityConfigurations\" />
-    <Folder Include="Enums\" />
-    <Folder Include="Repositories\Models\" />
-  </ItemGroup>
-
 </Project>

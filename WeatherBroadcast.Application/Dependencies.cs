@@ -1,6 +1,6 @@
 ﻿namespace WeatherBroadcast.Application;
 
-    public static class ApplicationDependencyInjection
+    public static class Dependencies
     {
 
             public static  void InstallServices(IServiceCollection services, IConfiguration appSettings)

@@ -1,6 +1,6 @@
 ﻿namespace WeatherBroadcast.Infrastructure;
 
-public static class InfrastructureServiceInstaller
+public static class Dependencies
 {
  public static void InstallServices(IServiceCollection services, IConfiguration appSettings)
     {

@@ -1,11 +1,4 @@
-﻿using Azure;
-using Newtonsoft.Json;
-using WeatherBroadcast.Application.Models;
-using WeatherBroadcast.Domain.SeedOfWork;
-using WeatherBroadcast.Infrastructure.Providers;
-using WeatherBroadcast.Infrastructure.Providers.Models;
-
-namespace WeatherBroadcast.Application.Services;
+﻿namespace WeatherBroadcast.Application.Services;
 
 public class WeatherService : IWeatherService
 {

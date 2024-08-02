@@ -1,5 +1,4 @@
-﻿using WeatherBroadcast.Domain.Entities;
-using WeatherBroadcast.Infrastructure.Providers.Models;
+﻿
 
 namespace WeatherBroadcast.Application.Models;
 
