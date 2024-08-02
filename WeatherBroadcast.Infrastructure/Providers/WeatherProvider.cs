@@ -1,4 +1,6 @@
-﻿namespace WeatherBroadcast.Infrastructure.Providers;
+﻿using WeatherBroadcast.Infrastructure.Providers.Models;
+
+namespace WeatherBroadcast.Infrastructure.Providers;
 
 public class WeatherProvider : IWeatherProvider
 {
@@ -8,14 +10,13 @@ public class WeatherProvider : IWeatherProvider
     {
         _httpClientFactory = httpClientFactory;
     }
-    public async Task<string> GetWeatherDetail(CancellationToken cancellationToken)
+    public async Task<GetWeatherDetailResponse> GetWeatherDetail(CancellationToken cancellationToken)
     {
         var client = _httpClientFactory.CreateClient("weatherService");
         var request = new HttpRequestMessage(HttpMethod.Get, "");
         var response = await client.SendAsync(request, cancellationToken);
         response.EnsureSuccessStatusCode();
-        //  return JsonConvert.DeserializeObject<GetWeatherDetailResponse>(await response.Content.ReadAsStringAsync(cancellationToken));
-        return await response.Content.ReadAsStringAsync(cancellationToken);
+        return JsonConvert.DeserializeObject<GetWeatherDetailResponse>(await response.Content.ReadAsStringAsync(cancellationToken)); 
 
     }
 }

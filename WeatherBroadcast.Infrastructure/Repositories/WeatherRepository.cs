@@ -11,14 +11,15 @@ public class WeatherRepository : IWeatherRepository
     }
     public async Task AddAsync(WeatherData weatherData)
     {
-        _context.WeatherData.Add(weatherData);
+        await _context.WeatherData.AddAsync(weatherData);
         await _context.SaveChangesAsync();
     }
 
-    public WeatherData Get()
+    public async  Task<WeatherData> GetAsync(CancellationToken cancellationToken)
     {
-        return _context.WeatherData
-            .OrderBy(e => e.Id).LastOrDefault();
+        return await _context.WeatherData
+            .OrderBy(e => e.Id).LastOrDefaultAsync(cancellationToken: cancellationToken);
     }
+
 
 }

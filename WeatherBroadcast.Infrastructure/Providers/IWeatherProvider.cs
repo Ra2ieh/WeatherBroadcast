@@ -1,7 +1,9 @@
-﻿namespace WeatherBroadcast.Infrastructure.Providers;
+﻿using WeatherBroadcast.Infrastructure.Providers.Models;
+
+namespace WeatherBroadcast.Infrastructure.Providers;
 
 public interface IWeatherProvider
 {
-    Task<string> GetWeatherDetail(CancellationToken cancellationToken);
+    Task<GetWeatherDetailResponse> GetWeatherDetail(CancellationToken cancellationToken);
 
 }
