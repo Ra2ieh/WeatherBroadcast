@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WeatherBroadcast.Application.Services;
+﻿
 
 namespace WeatherBroadcast.Api.Controllers
 {

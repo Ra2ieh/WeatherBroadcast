@@ -1,4 +1,4 @@
-﻿namespace WeatherBroadcast.Infrastructure.Services.Models;
+﻿namespace WeatherBroadcast.Infrastructure.Providers.Models;
 
 public class HourlyUnits
 {

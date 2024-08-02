@@ -22,12 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ApiHelper\ApiHelper.csproj" />
     <ProjectReference Include="..\WeatherBroadcast.Domain\WeatherBroadcast.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ExternalServices\" />
     <Folder Include="Migrations\" />
     <Folder Include="Repositories\" />
   </ItemGroup>

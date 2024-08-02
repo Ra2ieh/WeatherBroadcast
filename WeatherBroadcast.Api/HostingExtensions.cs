@@ -14,8 +14,8 @@ namespace WeatherBroadcast.Api
             });
 
             
-            InfrastructureServiceInstaller.InstallServices(builder.Services, builder.Configuration);
-            Application.ApplicationDependencyInjection.InstallServices(builder.Services, builder.Configuration);
+            Dependencies.InstallServices(builder.Services, builder.Configuration);
+            Application.Dependencies.InstallServices(builder.Services, builder.Configuration);
 
             return builder.Build();
         }
