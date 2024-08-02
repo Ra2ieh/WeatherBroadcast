@@ -19,8 +19,6 @@ public class WeatherRepository : IWeatherRepository
     public  WeatherData Get()
     {
         return   _context.WeatherData
-            .Include(w => w.HourlyUnits)
-            .Include(w => w.Hourly)
             .OrderBy(e=>e.Id).LastOrDefault();
     }
 

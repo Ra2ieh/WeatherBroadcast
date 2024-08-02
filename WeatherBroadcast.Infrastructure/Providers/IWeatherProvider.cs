@@ -4,6 +4,6 @@ namespace WeatherBroadcast.Infrastructure.Providers;
 
 public interface IWeatherProvider
 {
-    Task<GetWeatherDetailResponse> GetWeatherDetail(CancellationToken cancellationToken);
+    Task<string> GetWeatherDetail(CancellationToken cancellationToken);
 
 }

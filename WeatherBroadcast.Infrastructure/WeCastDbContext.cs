@@ -14,19 +14,6 @@ public class WeatherBroadcastDbContext : DbContext
 
     #endregion
     public DbSet<WeatherData> WeatherData { get; set; }
-    public DbSet<HourlyUnit> HourlyUnits { get; set; }
-    public DbSet<HourlyData> Hourly { get; set; }
 
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<WeatherData>()
-            .OwnsOne(w => w.HourlyUnits);
-
-        modelBuilder.Entity<HourlyData>()
-            .HasOne(h => h.WeatherData)
-            .WithMany(w => w.Hourly)
-            .HasForeignKey(h => h.WeatherDataId);
-
-    }
 }

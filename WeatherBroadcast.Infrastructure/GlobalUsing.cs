@@ -12,3 +12,4 @@ global using WeatherBroadcast.Infrastructure.Configs;
 global using System.ComponentModel.DataAnnotations;
 global using WeatherBroadcast.Infrastructure.Services.Models;
 global using WeatherBroadcast.Infrastructure.Providers;
+global using WeatherBroadcast.Infrastructure.Providers.Models;

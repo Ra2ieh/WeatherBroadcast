@@ -6,9 +6,9 @@ public static class InfrastructureServiceInstaller
     {
         var optionBuilder=new DbContextOptionsBuilder();
         optionBuilder.LogTo(Console.WriteLine);
-        services.AddHttpClient("deliveryTimeService", client =>
+        services.AddHttpClient("weatherService", client =>
         {
-            var baseUrl = appSettings.GetSection("AppConfig:GetDeliveryTimeConfig:BaseUrl").Value;
+            var baseUrl = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m&relativehumidity_2";
             client.BaseAddress = new Uri(baseUrl);
             client.Timeout = TimeSpan.FromSeconds(5);
         }

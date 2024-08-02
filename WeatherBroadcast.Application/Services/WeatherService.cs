@@ -1,4 +1,6 @@
-﻿using WeatherBroadcast.Application.Models;
+﻿using Azure;
+using Newtonsoft.Json;
+using WeatherBroadcast.Application.Models;
 using WeatherBroadcast.Domain.SeedOfWork;
 using WeatherBroadcast.Infrastructure.Providers;
 using WeatherBroadcast.Infrastructure.Providers.Models;
@@ -23,8 +25,9 @@ public class WeatherService : IWeatherService
         GetWeatherDetailResponse weatherDetail;
         try
         {
-            weatherDetail = await _weatherProvider.GetWeatherDetail(cancellationToken.Token);
-            await _unitOfWork.WeatherRepository.AddAsync(ApplicationMapper.Map(weatherDetail));
+            var response  = await _weatherProvider.GetWeatherDetail(cancellationToken.Token);
+            await _unitOfWork.WeatherRepository.AddAsync(ApplicationMapper.Map(response));
+            weatherDetail = JsonConvert.DeserializeObject<GetWeatherDetailResponse>(response);
 
         }
         catch (Exception)
@@ -37,7 +40,7 @@ public class WeatherService : IWeatherService
     private GetWeatherDetailResponse HandleError()
     {
         var weatherData = _unitOfWork.WeatherRepository.Get();
-        return weatherData != null ? ApplicationMapper.Map(weatherData) : null;
+        return weatherData != null ? JsonConvert.DeserializeObject<GetWeatherDetailResponse>(weatherData.JsonContent) : null;
     }
 }
 
