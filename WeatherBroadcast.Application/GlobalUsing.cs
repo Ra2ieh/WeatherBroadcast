@@ -1,6 +1,5 @@
 ﻿global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
-global using Newtonsoft.Json;
 global using WeatherBroadcast.Application.Models;
 global using WeatherBroadcast.Application.Services;
 global using WeatherBroadcast.Domain.Entities;

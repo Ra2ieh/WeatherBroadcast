@@ -1,5 +1,4 @@
-﻿using Azure;
-
+﻿
 namespace WeatherBroadcast.Application.Services;
 
 public class WeatherService : IWeatherService
@@ -28,7 +27,7 @@ public class WeatherService : IWeatherService
 
             return await completedTask;
         }
-        catch (Exception e)
+        catch (Exception )
         {
             return null;
         }
