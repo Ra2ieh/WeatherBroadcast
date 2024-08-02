@@ -5,17 +5,16 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F286B09D-E8EC-42ED-83C5-0B5163D333CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherBroadcast.Domain", "WeatherBroadcast.Domain\WeatherBroadcast.Domain.csproj", "{9AC14DEE-07FA-4D90-A240-F0F51A11CA22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherBroadcast.Domain", "WeatherBroadcast.Domain\WeatherBroadcast.Domain.csproj", "{9AC14DEE-07FA-4D90-A240-F0F51A11CA22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherBroadcast.Application", "WeatherBroadcast.Application\WeatherBroadcast.Application.csproj", "{2C2F1B4D-2139-47AF-8CD2-7AB976DE1550}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherBroadcast.Application", "WeatherBroadcast.Application\WeatherBroadcast.Application.csproj", "{2C2F1B4D-2139-47AF-8CD2-7AB976DE1550}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherBroadcast.Infrastructure", "WeatherBroadcast.Infrastructure\WeatherBroadcast.Infrastructure.csproj", "{CEFC2C97-B41F-460A-AE1C-6D45ADD928A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherBroadcast.Infrastructure", "WeatherBroadcast.Infrastructure\WeatherBroadcast.Infrastructure.csproj", "{CEFC2C97-B41F-460A-AE1C-6D45ADD928A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherBroadcast.Api", "WeatherBroadcast.Api\WeatherBroadcast.Api.csproj", "{B5C4A337-8819-4B72-89A6-F93F9E205E87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherBroadcast.Api", "WeatherBroadcast.Api\WeatherBroadcast.Api.csproj", "{B5C4A337-8819-4B72-89A6-F93F9E205E87}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2C2F1B4D-2139-47AF-8CD2-7AB976DE1550} = {2C2F1B4D-2139-47AF-8CD2-7AB976DE1550}
 		{CEFC2C97-B41F-460A-AE1C-6D45ADD928A8} = {CEFC2C97-B41F-460A-AE1C-6D45ADD928A8}
-		{DD452B4C-3B55-43FA-A510-3B63E3A13BEF} = {DD452B4C-3B55-43FA-A510-3B63E3A13BEF}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiHelper", "ApiHelper\ApiHelper.csproj", "{DD452B4C-3B55-43FA-A510-3B63E3A13BEF}"
