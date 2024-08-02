@@ -1,4 +1,6 @@
-﻿namespace WeatherBroadcast.Application.Services;
+﻿using Azure;
+
+namespace WeatherBroadcast.Application.Services;
 
 public class WeatherService : IWeatherService
 {
@@ -15,25 +17,37 @@ public class WeatherService : IWeatherService
     {
 
         using var cancellationToken = new CancellationTokenSource(TimeSpan.FromSeconds(5));
-        GetWeatherDetailResponse weatherDetail;
         try
         {
-            var response = await _weatherProvider.GetWeatherDetail(cancellationToken.Token);
-            await _unitOfWork.WeatherRepository.AddAsync(ApplicationMapper.Map(response));
-            weatherDetail = JsonConvert.DeserializeObject<GetWeatherDetailResponse>(response);
 
+            var apiCallTask = GetDataFromApi(cancellationToken.Token);
+            await _unitOfWork.WeatherRepository.AddAsync(ApplicationMapper.Map(apiCallTask.Result));
+            var dataBaseTask = GetDataFromDataBase(cancellationToken.Token);
+
+            var completedTask = await Task.WhenAny(apiCallTask, dataBaseTask);
+
+            return await completedTask;
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            weatherDetail = HandleError();
+            return null;
         }
-        return weatherDetail;
+
+
+
     }
 
-    private GetWeatherDetailResponse HandleError()
+    private async Task<GetWeatherDetailResponse> GetDataFromDataBase(CancellationToken cancellationToken)
     {
-        var weatherData = _unitOfWork.WeatherRepository.Get();
-        return weatherData != null ? JsonConvert.DeserializeObject<GetWeatherDetailResponse>(weatherData.JsonContent) : null;
+        var weatherData = await _unitOfWork.WeatherRepository.GetAsync(cancellationToken);
+        return weatherData != null ? ApplicationMapper.Map(weatherData) : null;
+    }
+
+    private async Task<GetWeatherDetailResponse> GetDataFromApi(CancellationToken cancellationToken)
+    {
+        
+       return await _weatherProvider.GetWeatherDetail(cancellationToken);
+
     }
 }
 

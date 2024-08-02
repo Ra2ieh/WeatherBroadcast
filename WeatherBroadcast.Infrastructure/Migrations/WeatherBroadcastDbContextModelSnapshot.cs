@@ -29,8 +29,32 @@ namespace WeatherBroadcast.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("JsonContent")
+                    b.Property<double>("Elevation")
+                        .HasColumnType("float");
+
+                    b.Property<double>("GenerationtimeMs")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Hourly")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HourlyUnits")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Timezone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TimezoneAbbreviation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UtcOffsetSeconds")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

@@ -16,7 +16,15 @@ namespace WeatherBroadcast.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    JsonContent = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Latitude = table.Column<double>(type: "float", nullable: false),
+                    Longitude = table.Column<double>(type: "float", nullable: false),
+                    GenerationtimeMs = table.Column<double>(type: "float", nullable: false),
+                    UtcOffsetSeconds = table.Column<int>(type: "int", nullable: false),
+                    Timezone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TimezoneAbbreviation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Elevation = table.Column<double>(type: "float", nullable: false),
+                    HourlyUnits = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Hourly = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
