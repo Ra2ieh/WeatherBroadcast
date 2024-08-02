@@ -1,5 +1,4 @@
-﻿using WeatherBroadcast.Domain.Repositories;
-using WeatherBroadcast.Infrastructure.Repositories;
+﻿using WeatherBroadcast.Infrastructure.Repositories;
 
 namespace WeatherBroadcast.Infrastructure.SeedOfWork;
 

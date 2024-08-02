@@ -13,7 +13,7 @@ namespace WeatherBroadcast.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WeatherBroadcastWebAPI", Version = "v1" });
             });
 
-            
+
             Dependencies.InstallServices(builder.Services, builder.Configuration);
             Application.Dependencies.InstallServices(builder.Services, builder.Configuration);
 

@@ -18,14 +18,14 @@ public class WeatherService : IWeatherService
         GetWeatherDetailResponse weatherDetail;
         try
         {
-            var response  = await _weatherProvider.GetWeatherDetail(cancellationToken.Token);
+            var response = await _weatherProvider.GetWeatherDetail(cancellationToken.Token);
             await _unitOfWork.WeatherRepository.AddAsync(ApplicationMapper.Map(response));
             weatherDetail = JsonConvert.DeserializeObject<GetWeatherDetailResponse>(response);
 
         }
         catch (Exception)
         {
-            weatherDetail=HandleError();
+            weatherDetail = HandleError();
         }
         return weatherDetail;
     }

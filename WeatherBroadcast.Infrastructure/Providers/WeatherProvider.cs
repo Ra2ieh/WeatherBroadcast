@@ -14,8 +14,8 @@ public class WeatherProvider : IWeatherProvider
         var request = new HttpRequestMessage(HttpMethod.Get, "");
         var response = await client.SendAsync(request, cancellationToken);
         response.EnsureSuccessStatusCode();
-      //  return JsonConvert.DeserializeObject<GetWeatherDetailResponse>(await response.Content.ReadAsStringAsync(cancellationToken));
-      return await response.Content.ReadAsStringAsync(cancellationToken);
+        //  return JsonConvert.DeserializeObject<GetWeatherDetailResponse>(await response.Content.ReadAsStringAsync(cancellationToken));
+        return await response.Content.ReadAsStringAsync(cancellationToken);
 
     }
 }

@@ -2,9 +2,9 @@
 
 public static class Dependencies
 {
- public static void InstallServices(IServiceCollection services, IConfiguration appSettings)
+    public static void InstallServices(IServiceCollection services, IConfiguration appSettings)
     {
-        var optionBuilder=new DbContextOptionsBuilder();
+        var optionBuilder = new DbContextOptionsBuilder();
         optionBuilder.LogTo(Console.WriteLine);
         services.AddHttpClient("weatherService", client =>
         {
@@ -18,7 +18,7 @@ public static class Dependencies
         services.AddDbContext<WeatherBroadcastDbContext>(options =>
         options.UseSqlServer(appSettings.GetConnectionString("WeatherBroadcastDbConnectionString"))
         );
-        
+
         appSettings.GetSection("AppConfig").Get<AppConfig>();
     }
 }

@@ -15,10 +15,10 @@ public class WeatherRepository : IWeatherRepository
         await _context.SaveChangesAsync();
     }
 
-    public  WeatherData Get()
+    public WeatherData Get()
     {
-        return   _context.WeatherData
-            .OrderBy(e=>e.Id).LastOrDefault();
+        return _context.WeatherData
+            .OrderBy(e => e.Id).LastOrDefault();
     }
 
 }
