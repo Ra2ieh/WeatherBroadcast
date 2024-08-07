@@ -2,5 +2,5 @@
 
 public interface IWeatherService
 {
-    Task<GetWeatherDetailResponse> GetWeatherDetail();
+    Task<GetWeatherDetailResponse> GetWeatherDetail(CancellationToken cancellationToken);
 }

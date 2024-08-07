@@ -13,9 +13,9 @@ namespace WeatherBroadcast.Api.Controllers
             _weatherService = weatherService;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllDelayReport()
+        public async Task<IActionResult> GetAllDelayReport(CancellationToken cancellationToken)
         {
-            var serviceResult = await _weatherService.GetWeatherDetail();
+            var serviceResult = await _weatherService.GetWeatherDetail(cancellationToken);
             return Ok(serviceResult);
         }
     }
