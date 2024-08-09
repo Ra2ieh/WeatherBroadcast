@@ -35,9 +35,12 @@ public class WeatherService : IWeatherService
         if ((completedTask == dataBaseTask && result is null))
         {
             result = await apiCallTask;
-            await _unitOfWork.WeatherRepository.AddAsync(ApplicationMapper.Map(result));
-        }
 
+        }
+        await _unitOfWork.WeatherRepository.AddAsync(new WeatherData
+        {
+            JsonFile = JsonConvert.SerializeObject(result)
+        });
         await _distributedCache.SetStringAsync(cacheKey, JsonConvert.SerializeObject(result), options: new DistributedCacheEntryOptions
         {
             AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5),
@@ -48,17 +51,13 @@ public class WeatherService : IWeatherService
     private async Task<GetWeatherDetailResponse> GetDataFromDataBase(CancellationToken cancellationToken)
     {
         var weatherData = await _unitOfWork.WeatherRepository.GetAsync(cancellationToken);
-        //if (weatherData == null) await Task.Delay(5000, cancellationToken);
-        return weatherData != null ? ApplicationMapper.Map(weatherData) : null;
+
+        return weatherData != null ? JsonConvert.DeserializeObject<GetWeatherDetailResponse>(weatherData.JsonFile): null;
     }
 
     private async Task<GetWeatherDetailResponse> GetDataFromApi(CancellationToken cancellationToken)
     {
-
-
         return await _weatherProvider.GetWeatherDetail(cancellationToken);
-
-
     }
 }
 

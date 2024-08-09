@@ -11,7 +11,7 @@ using WeatherBroadcast.Infrastructure;
 namespace WeatherBroadcast.Infrastructure.Migrations
 {
     [DbContext(typeof(WeatherBroadcastDbContext))]
-    [Migration("20240802211523_init")]
+    [Migration("20240809092319_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -26,38 +26,14 @@ namespace WeatherBroadcast.Infrastructure.Migrations
 
             modelBuilder.Entity("WeatherBroadcast.Domain.Entities.WeatherData", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<decimal>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("decimal(20,0)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<decimal>("Id"));
 
-                    b.Property<double>("Elevation")
-                        .HasColumnType("float");
-
-                    b.Property<double>("GenerationtimeMs")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Hourly")
+                    b.Property<string>("JsonFile")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HourlyUnits")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Latitude")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Longitude")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Timezone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TimezoneAbbreviation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UtcOffsetSeconds")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
