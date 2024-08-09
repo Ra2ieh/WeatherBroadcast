@@ -1,6 +1,6 @@
 ﻿
-using System;
-using System.Threading;
+using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
 using static System.Threading.Tasks.Task;
 
 namespace WeatherBroadcast.Application.Services;
@@ -9,16 +9,20 @@ public class WeatherService : IWeatherService
 {
     private readonly IWeatherProvider _weatherProvider;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IDistributedCache _distributedCache;
 
-    public WeatherService(IWeatherProvider weatherProvider, IUnitOfWork unitOfWork)
+    public WeatherService(IWeatherProvider weatherProvider, IUnitOfWork unitOfWork, IDistributedCache distributedCache)
     {
         _weatherProvider = weatherProvider;
         _unitOfWork = unitOfWork;
+        _distributedCache = distributedCache;
     }
 
     public async Task<GetWeatherDetailResponse> GetWeatherDetail(CancellationToken cancellationToken)
     {
-        var result = new GetWeatherDetailResponse();
+        const string cacheKey = "WeatherBroadcastResult";
+        var cacheResult = await _distributedCache.GetStringAsync(cacheKey, token: cancellationToken);
+        if (cacheResult != null) return JsonConvert.DeserializeObject<GetWeatherDetailResponse>(cacheResult);
         var apiCallTask = GetDataFromApi(cancellationToken);
         var dataBaseTask = GetDataFromDataBase(cancellationToken);
         var delayTask = Delay(TimeSpan.FromSeconds(3), cancellationToken);
@@ -27,17 +31,18 @@ public class WeatherService : IWeatherService
             return null;
         if (completedTask.IsFaulted && completedTask == apiCallTask)
             return await dataBaseTask;
-        result = await (Task<GetWeatherDetailResponse>)completedTask;
+        var result = await (Task<GetWeatherDetailResponse>)completedTask;
         if ((completedTask == dataBaseTask && result is null))
         {
             result = await apiCallTask;
             await _unitOfWork.WeatherRepository.AddAsync(ApplicationMapper.Map(result));
         }
 
+        await _distributedCache.SetStringAsync(cacheKey, JsonConvert.SerializeObject(result), options: new DistributedCacheEntryOptions
+        {
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5),
+        }, token: cancellationToken);
         return result;
-
-
-
     }
 
     private async Task<GetWeatherDetailResponse> GetDataFromDataBase(CancellationToken cancellationToken)
